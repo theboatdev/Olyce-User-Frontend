@@ -1,0 +1,374 @@
+@import "tailwindcss";
+@config "../tailwind.config.ts";
+
+@layer base {
+  :root {
+    --color-background: #f9f9f9;
+    --color-on-background: #1a1c1c;
+    --color-surface: #f9f9f9;
+    --color-on-surface: #1a1c1c;
+    --color-surface-container: #eeeeee;
+    --color-surface-variant: #e2e2e2;
+    --color-surface-container-highest: #e2e2e2;
+    --color-outline-variant: #d2c3c3;
+    --color-primary: #6d5a5a;
+  }
+
+  .dark {
+    --color-background: #121212;
+    --color-on-background: #e4e4e4;
+    --color-surface: #121212;
+    --color-on-surface: #e4e4e4;
+    --color-surface-container: #1e1e1e;
+    --color-surface-variant: #2a2a2a;
+    --color-surface-container-highest: #333333;
+    --color-outline-variant: #404040;
+    --color-primary: #e4e4e4;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply min-h-screen flex flex-col;
+    background-color: var(--color-background);
+    color: var(--color-on-background);
+  }
+  
+  body::selection {
+    background-color: #f4dada;
+    color: #725e5e;
+  }
+}
+
+/* Image overlay gradient */
+.image-overlay {
+  background: linear-gradient(to top, rgba(26, 28, 28, 0.8) 0%, rgba(26, 28, 28, 0) 100%);
+}
+
+.text-shadow-sm {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Fade in animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* Staggered animation delays */
+.delay-1 {
+  animation-delay: 0.2s;
+}
+.delay-2 {
+  animation-delay: 0.4s;
+}
+.delay-3 {
+  animation-delay: 0.6s;
+}
+.delay-4 {
+  animation-delay: 0.8s;
+}
+
+/* Floating animation */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.float-animation {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Pulse animation for CTA buttons */
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0px 12px 32px rgba(17, 17, 17, 0.04);
+  }
+  50% {
+    box-shadow: 0px 12px 32px rgba(109, 90, 90, 0.15);
+  }
+}
+
+.cta-button:hover {
+  animation: pulse-glow 2s ease-in-out;
+}
+
+/* Video container styles */
+video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Smooth hover lift effect */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* Text reveal animation */
+@keyframes textReveal {
+  0% {
+    clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
+  }
+  100% {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+}
+
+.text-reveal {
+  animation: textReveal 1s ease-out;
+}
+
+/* Carousel Styles */
+.carousel-container {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  margin: 0 -20px;
+}
+
+@media (min-width: 768px) {
+  .carousel-container {
+    margin: 0;
+  }
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.carousel-slide {
+  flex: 0 0 85%;
+  padding: 0 10px;
+  transition: all 0.4s ease;
+}
+
+@media (min-width: 640px) {
+  .carousel-slide {
+    flex: 0 0 70%;
+    padding: 0 12px;
+  }
+}
+
+@media (min-width: 768px) {
+  .carousel-slide {
+    flex: 0 0 55%;
+    padding: 0 14px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .carousel-slide {
+    flex: 0 0 38%;
+    padding: 0 16px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .carousel-slide {
+    flex: 0 0 32%;
+    padding: 0 16px;
+  }
+}
+
+/* Card styling improvements */
+.destination-card {
+  aspect-ratio: 3/4;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .destination-card {
+    aspect-ratio: 4/5;
+  }
+}
+
+/* Pause indicator */
+.pause-indicator {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #6d5a5a;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 25;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.carousel-container:hover .pause-indicator {
+  opacity: 1;
+}
+
+.carousel-container.expanded .pause-indicator {
+  display: none;
+}
+
+.carousel-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.95);
+  border: none;
+  border-radius: 50%;
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 20;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.carousel-container:hover .carousel-nav:not(.hidden) {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.carousel-nav.hidden {
+  display: none;
+}
+
+.carousel-nav:hover {
+  background: rgba(255, 255, 255, 1);
+  transform: translateY(-50%) scale(1.12);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.15);
+}
+
+.carousel-nav:active {
+  transform: translateY(-50%) scale(1.05);
+}
+
+.carousel-nav.prev {
+  left: 12px;
+}
+
+.carousel-nav.next {
+  right: 12px;
+}
+
+@media (min-width: 768px) {
+  .carousel-nav.prev {
+    left: -26px;
+  }
+
+  .carousel-nav.next {
+    right: -26px;
+  }
+}
+
+/* Expand/Collapse Button */
+.expand-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: #111;
+  border: 1.5px solid #111;
+  border-radius: 20px;
+  color: #fff;
+  font-family: 'Manrope', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  margin-top: 28px;
+}
+
+.expand-btn:hover {
+  background: transparent;
+  color: #111;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.dark .expand-btn {
+  background: #fff;
+  border-color: #fff;
+  color: #111;
+}
+
+.dark .expand-btn:hover {
+  background: transparent;
+  color: #fff;
+}
+
+.expand-btn:active {
+  transform: translateY(0);
+}
+
+.expand-btn .material-symbols-outlined {
+  transition: transform 0.3s ease;
+  font-size: 18px;
+}
+
+.expand-btn.expanded .material-symbols-outlined {
+  transform: rotate(180deg);
+}
+
+/* Hide scrollbar — used on horizontal image gallery */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Leaflet Map Styles */
+.leaflet-container {
+  font-family: inherit;
+}
+
+.leaflet-popup-content-wrapper {
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.leaflet-popup-content {
+  margin: 12px;
+}
+
+.custom-marker {
+  background: transparent;
+  border: none;
+}
