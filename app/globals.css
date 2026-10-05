@@ -12,6 +12,15 @@
     --color-surface-container-highest: #e2e2e2;
     --color-outline-variant: #d2c3c3;
     --color-primary: #6d5a5a;
+
+    /* Reference-site palette (GSM-style UI) */
+    --gsm-teal: #007f7f;
+    --gsm-gold: #f4b400;
+    --gsm-orange: #ff9c34;
+    --gsm-body: #6f747e;
+    --gsm-footer: #064949;
+    --gsm-topbar: #0b1220;
+    --gsm-feature: rgba(8, 28, 48, 0.88);
   }
 
   .dark {
@@ -39,6 +48,11 @@
   body::selection {
     background-color: #f4dada;
     color: #725e5e;
+  }
+
+  /* Body paragraphs justified; hero uses text-left / text-center utilities to override */
+  p {
+    text-align: justify;
   }
 }
 
@@ -371,4 +385,109 @@ video {
 .custom-marker {
   background: transparent;
   border: none;
+}
+
+/* Home page — reference travel-site look */
+.olyce-home {
+  font-family: var(--font-heebo), Helvetica, Arial, sans-serif;
+  color: var(--gsm-body);
+  background: #fff;
+}
+
+.olyce-home h1,
+.olyce-home h2,
+.olyce-home h3,
+.olyce-home h4,
+.olyce-home h5,
+.olyce-home .font-heading {
+  font-family: var(--font-lato), Helvetica, Arial, sans-serif;
+}
+
+.olyce-home .btn-gold {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: var(--gsm-gold);
+  color: #fff;
+  font-family: var(--font-lato), sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  padding: 14px 24px;
+  border-radius: 10px;
+  transition: background-color 0.25s ease, transform 0.25s ease;
+}
+
+@media (min-width: 768px) {
+  .olyce-home .btn-gold {
+    font-size: 16px;
+    padding: 16px 32px;
+  }
+}
+
+.olyce-home .btn-gold:hover {
+  background: #e0a500;
+}
+
+.olyce-home .btn-gold-sm {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: var(--gsm-gold);
+  color: #fff;
+  font-family: var(--font-lato), sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 1;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  padding: 12px 22px;
+  border-radius: 10px;
+  transition: background-color 0.25s ease;
+}
+
+@media (min-width: 768px) {
+  .olyce-home .btn-gold-sm {
+    font-size: 14px;
+    padding: 14px 30px;
+  }
+}
+
+.olyce-home .btn-gold-sm:hover {
+  background: #e0a500;
+}
+
+.olyce-home .section-title {
+  color: var(--gsm-teal);
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+@media (min-width: 768px) {
+  .olyce-home .section-title {
+    font-size: 48px;
+  }
+}
+
+.olyce-home .tour-title {
+  color: var(--gsm-teal);
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+@media (min-width: 768px) {
+  .olyce-home .tour-title {
+    font-size: 28px;
+  }
+}
+
+.olyce-home .travel-pattern {
+  background-color: #fff;
+  background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23007f7f' fill-opacity='0.04'%3E%3Cpath d='M40 8l3 9h9l-7 5 3 9-8-6-8 6 3-9-7-5h9z'/%3E%3Ccircle cx='16' cy='56' r='3'/%3E%3Ccircle cx='64' cy='56' r='3'/%3E%3Cpath d='M10 30h8v2h-8zm52 0h8v2h-8z'/%3E%3C/g%3E%3C/svg%3E");
 }

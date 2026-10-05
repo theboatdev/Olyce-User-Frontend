@@ -1,27 +1,33 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import Image from 'next/image'
 
 const TESTIMONIALS = [
   {
     id: 1,
-    quote: "A truly transformative experience. Every detail was curated with an exceptional level of care and understanding of what luxury really means.",
-    author: "Eleanor Vance",
-    location: "London, UK",
+    quote:
+      'A truly transformative experience. Every detail was curated with an exceptional level of care and understanding of what luxury really means.',
+    author: 'Eleanor Vance',
+    location: 'Tourist From UK',
+    image: '/images/etienne-boulanger-J7LiHL7jAgU-unsplash.jpg',
   },
   {
     id: 2,
-    quote: "We were guided through landscapes untouched by time. The ethereal quality of the journey left us breathless and profoundly moved.",
-    author: "Marcus & Sophia",
-    location: "New York, USA",
+    quote:
+      'We were guided through landscapes untouched by time. The ethereal quality of the journey left us breathless and profoundly moved.',
+    author: 'Marcus & Sophia',
+    location: 'Tourists From USA',
+    image: '/images/shashank-hudkar-KYBc1eq0dJo-unsplash.jpg',
   },
   {
     id: 3,
-    quote: "From the secluded villas to the exclusive heritage tours, this wasn't just a trip; it was a masterful composition of unforgettable moments.",
-    author: "Isabella Rossi",
-    location: "Milan, Italy",
-  }
+    quote:
+      'From the secluded villas to the exclusive heritage tours, this wasn’t just a trip; it was a masterful composition of unforgettable moments.',
+    author: 'Isabella Rossi',
+    location: 'Tourist From Italy',
+    image: '/images/chathura-anuradha-subasinghe-40uQmE9Zq8g-unsplash.jpg',
+  },
 ]
 
 export default function Testimonials() {
@@ -32,71 +38,66 @@ export default function Testimonials() {
       setCurrentIndex((prev) => (prev + 1) % TESTIMONIALS.length)
     }, 6000)
     return () => clearInterval(timer)
-  }, [])
+  }, [currentIndex])
+
+  const current = TESTIMONIALS[currentIndex]
 
   return (
-    <section className="relative w-full py-24 md:py-32 bg-background overflow-hidden flex items-center justify-center my-16 md:my-32 border-y border-outline-variant/10">
-      {/* Decorative background elements */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-px h-full bg-outline-variant/10" />
-        <div className="absolute top-0 right-1/4 w-px h-full bg-outline-variant/10" />
-      </div>
+    <section className="relative w-full min-h-[460px] sm:min-h-[520px] overflow-hidden">
+      {/* Background images: all mounted, active one fades in */}
+      {TESTIMONIALS.map((item, idx) => (
+        <div
+          key={item.id}
+          className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
+            idx === currentIndex ? 'opacity-100 z-[1]' : 'opacity-0 z-0'
+          }`}
+          aria-hidden={idx !== currentIndex}
+        >
+          <Image
+            src={item.image}
+            alt=""
+            fill
+            className="object-cover"
+            sizes="100vw"
+            priority={idx === 0}
+          />
+        </div>
+      ))}
+      <div className="absolute inset-0 z-[2] bg-black/55" />
 
-      <div className="max-w-4xl mx-auto px-6 relative z-10 w-full perspective-[1000px]">
-        <div className="text-center mb-16">
-          <span className="font-sans text-[10px] uppercase tracking-[0.2em] font-semibold text-on-surface/50">
-            Client Reflections
+      <div className="relative z-10 max-w-[900px] mx-auto px-5 sm:px-8 py-14 sm:py-24 text-center flex flex-col items-center justify-center min-h-[460px] sm:min-h-[520px]">
+        <h2 className="font-heading text-[28px] sm:text-[36px] md:text-[48px] font-semibold text-white mb-3 sm:mb-4">
+          What Our Customers Say
+        </h2>
+          <p className="text-center text-[15px] sm:text-[16px] leading-7 font-light text-white/80 mb-8 sm:mb-10 max-w-2xl mx-auto">
+          Guests share how Olyce journeys felt on the ground, from guides and pacing to the small
+          details that made the trip feel personal.
+        </p>
+
+        <div
+          key={current.id}
+          className="flex flex-col items-center animate-[fadeInUp_0.45s_ease-out]"
+        >
+          <p className="text-center font-heading text-[18px] sm:text-[24px] md:text-[32px] font-semibold text-white leading-snug mb-6 sm:mb-8 max-w-3xl">
+            “{current.quote}”
+          </p>
+          <span className="font-heading text-[18px] font-semibold text-[var(--gsm-gold)]">
+            {current.author}
           </span>
+          <span className="text-[14px] text-white/75 mt-1">{current.location}</span>
         </div>
 
-        <div className="relative h-[250px] md:h-[200px] flex items-center justify-center">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={currentIndex}
-              initial={{ opacity: 0, rotateX: -15, y: 20, scale: 0.95 }}
-              animate={{ opacity: 1, rotateX: 0, y: 0, scale: 1 }}
-              exit={{ opacity: 0, rotateX: 15, y: -20, scale: 0.95 }}
-              transition={{ 
-                duration: 0.8, 
-                ease: [0.16, 1, 0.3, 1] // Ethereal luxury ease
-              }}
-              className="absolute w-full text-center flex flex-col items-center justify-center"
-              style={{ transformStyle: "preserve-3d" }}
-            >
-              <p className="font-serif text-2xl md:text-3xl lg:text-4xl text-on-surface leading-tight md:leading-snug max-w-3xl italic">
-                "{TESTIMONIALS[currentIndex].quote}"
-              </p>
-              
-              <div className="mt-8 flex flex-col items-center gap-2">
-                <div className="w-8 h-px bg-on-surface/30" />
-                <span className="font-sans text-sm font-semibold tracking-wide text-on-surface mt-2">
-                  {TESTIMONIALS[currentIndex].author}
-                </span>
-                <span className="font-sans text-[10px] uppercase tracking-widest text-on-surface/50">
-                  {TESTIMONIALS[currentIndex].location}
-                </span>
-              </div>
-            </motion.div>
-          </AnimatePresence>
-        </div>
-
-        {/* Progress indicators */}
-        <div className="mt-12 flex justify-center gap-3">
+        <div className="mt-10 flex justify-center gap-2">
           {TESTIMONIALS.map((_, idx) => (
             <button
               key={idx}
+              type="button"
               onClick={() => setCurrentIndex(idx)}
-              className="group py-2 px-1 focus:outline-none"
               aria-label={`Go to testimonial ${idx + 1}`}
-            >
-              <div 
-                className={`h-[1px] transition-all duration-500 ease-out ${
-                  idx === currentIndex 
-                    ? 'w-8 bg-on-surface' 
-                    : 'w-4 bg-outline-variant/30 group-hover:bg-outline-variant group-hover:w-6'
-                }`}
-              />
-            </button>
+              className={`h-2.5 w-2.5 rounded-full transition-colors ${
+                idx === currentIndex ? 'bg-[var(--gsm-gold)]' : 'bg-white/40'
+              }`}
+            />
           ))}
         </div>
       </div>

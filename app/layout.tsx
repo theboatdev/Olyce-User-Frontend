@@ -2,17 +2,18 @@ import './globals.css'
 
 import {SpeedInsights} from '@vercel/speed-insights/next'
 import type {Metadata} from 'next'
-import {Inter, IBM_Plex_Mono, Manrope, Playfair_Display} from 'next/font/google'
+import {Inter, IBM_Plex_Mono, Manrope, Playfair_Display, Lato, Heebo} from 'next/font/google'
 
 import Navbar from './components/Navbar'
+import FloatingInquireButton from './components/FloatingInquireButton'
 import {ThemeProvider} from './components/ThemeProvider'
 
 export const metadata: Metadata = {
   title: {
     template: '%s | Olyce Travel',
-    default: 'Olyce Travel — Premium Sri Lanka Tours',
+    default: 'Olyce Travel | Premium Sri Lanka Tours',
   },
-  description: 'Discover handcrafted Sri Lanka travel packages — cultural tours, wildlife safaris, beach escapes, and hill country adventures.',
+  description: 'Discover handcrafted Sri Lanka travel packages: cultural tours, wildlife safaris, beach escapes, and hill country adventures.',
 }
 
 const inter = Inter({
@@ -42,11 +43,25 @@ const playfairDisplay = Playfair_Display({
   display: 'swap',
 })
 
+const lato = Lato({
+  variable: '--font-lato',
+  subsets: ['latin'],
+  weight: ['400', '700', '900'],
+  display: 'swap',
+})
+
+const heebo = Heebo({
+  variable: '--font-heebo',
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600'],
+  display: 'swap',
+})
+
 export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${ibmPlexMono.variable} ${manrope.variable} ${playfairDisplay.variable} scroll-smooth`}
+      className={`${inter.variable} ${ibmPlexMono.variable} ${manrope.variable} ${playfairDisplay.variable} ${lato.variable} ${heebo.variable} scroll-smooth`}
       suppressHydrationWarning
     >
       <head>
@@ -58,9 +73,10 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
         />
       </head>
       <body className="bg-background text-on-background selection:bg-primary-container selection:text-on-primary-container min-h-screen flex flex-col" suppressHydrationWarning>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} disableTransitionOnChange>
           <Navbar />
           {children}
+          <FloatingInquireButton />
         </ThemeProvider>
         <SpeedInsights />
       </body>

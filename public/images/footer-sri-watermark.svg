@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="520" viewBox="0 0 1400 520" fill="none">
+  <g stroke="#3d9a9a" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.35">
+    <!-- Sigiriya-style rock -->
+    <path d="M80 380 L120 120 L200 80 L280 120 L320 380 Z M160 200 L200 160 L240 200 L200 240 Z"/>
+    <!-- Stupa -->
+    <ellipse cx="420" cy="400" rx="55" ry="12"/>
+    <path d="M420 400 L420 280 Q420 220 420 200 Q460 240 420 280"/>
+    <path d="M380 320 Q420 300 460 320"/>
+    <!-- Elephant -->
+    <path d="M560 400 Q540 360 560 320 Q600 300 640 320 Q660 340 650 380 Q620 410 560 400"/>
+    <path d="M650 340 Q680 330 690 350"/>
+    <circle cx="630" cy="335" r="4"/>
+    <!-- Tea hills -->
+    <path d="M780 400 L820 320 L860 360 L900 300 L940 400"/>
+    <path d="M800 400 L840 340 L880 380 L920 310 L960 400"/>
+    <!-- Palm -->
+    <path d="M1080 400 L1080 280"/>
+    <path d="M1080 300 Q1040 260 1020 240 M1080 290 Q1120 250 1140 230 M1080 280 Q1080 220 1060 200 M1080 275 Q1100 210 1120 195"/>
+    <!-- Train bridge -->
+    <path d="M1180 400 L1180 320 L1220 300 L1260 320 L1260 400"/>
+    <path d="M1190 400 L1190 330 M1210 400 L1210 315 M1230 400 L1230 318 M1250 400 L1250 330"/>
+    <path d="M1170 340 L1270 340"/>
+    <!-- Stilt fisherman -->
+    <path d="M1320 400 L1320 320"/>
+    <path d="M1300 400 L1340 400"/>
+    <path d="M1320 320 L1360 280"/>
+    <!-- Sri Lanka island outline -->
+    <path d="M250 180 Q280 140 320 160 Q350 200 340 240 Q300 280 260 260 Q220 220 250 180"/>
+  </g>
+</svg>

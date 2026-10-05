@@ -3,7 +3,7 @@ import PackageDetailView from '../../components/PackageDetailView'
 import Footer from '../../components/Footer'
 import { getPackageBySlug } from '../../../lib/data'
 
-// Force dynamic rendering — this page always fetches fresh data
+// Force dynamic rendering: this page always fetches fresh data
 export const dynamic = 'force-dynamic'
 
 export default async function PackagePage({ params }: { params: Promise<{ slug: string }> }) {
@@ -21,7 +21,7 @@ export default async function PackagePage({ params }: { params: Promise<{ slug: 
 
   return (
     <>
-      <main className="min-h-screen bg-background text-on-background pt-24 md:pt-32 pb-32">
+      <main className="min-h-screen bg-background text-on-background pt-20 sm:pt-24 md:pt-32 pb-24 sm:pb-32">
         <PackageDetailView packageData={packageData} />
       </main>
       <Footer />

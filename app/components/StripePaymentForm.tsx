@@ -66,7 +66,7 @@ export default function StripePaymentForm({ onSuccess, onCancel, amount }: Strip
         </div>
       )}
 
-      <div className="flex gap-4">
+      <div className="flex flex-col-reverse sm:flex-row gap-3 sm:gap-4">
         <button
           type="button"
           onClick={onCancel}
