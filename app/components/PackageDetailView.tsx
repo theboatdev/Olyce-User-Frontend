@@ -177,7 +177,7 @@ export default function PackageDetailView({ packageData }: { packageData: Packag
     <div className="relative w-full -mt-24 md:-mt-32">
       
       {/* Full-Width Hero Image */}
-      <div className="relative w-full h-[70vh] md:h-[75vh] overflow-hidden">
+      <div className="relative w-full h-[58vh] sm:h-[70vh] md:h-[75vh] overflow-hidden">
         {packageData.images && packageData.images.length > 0 && getValidImageUrl(packageData.images[0]) ? (
            <Image 
              src={getValidImageUrl(packageData.images[0])!}
@@ -197,42 +197,44 @@ export default function PackageDetailView({ packageData }: { packageData: Packag
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/70"></div>
         
         {/* Back Link */}
-        <div className="absolute top-28 md:top-36 left-0 right-0 max-w-container-max mx-auto px-margin-mobile md:px-gutter z-10">
+        <div className="absolute top-24 sm:top-28 md:top-36 left-0 right-0 max-w-container-max mx-auto px-margin-mobile md:px-gutter z-10">
           <Link href="/#featured" className="inline-flex items-center gap-2 text-white/90 hover:text-white transition-colors font-label-sm uppercase tracking-widest text-xs">
             <span className="material-symbols-outlined text-sm">arrow_left_alt</span> All Packages
           </Link>
         </div>
         
         {/* Package Info at bottom */}
-        <div className="absolute bottom-0 left-0 right-0 max-w-container-max mx-auto px-margin-mobile md:px-gutter pb-12 md:pb-16 z-10">
-          <div className="flex flex-wrap gap-2 mb-6">
-            <span className="px-4 py-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-sm text-xs font-label-sm uppercase tracking-widest text-white">{packageData.duration}</span>
+        <div className="absolute bottom-0 left-0 right-0 max-w-container-max mx-auto px-margin-mobile md:px-gutter pb-8 sm:pb-12 md:pb-16 z-10">
+          <div className="flex flex-wrap gap-2 mb-4 sm:mb-6">
+            <span className="px-3 sm:px-4 py-1.5 sm:py-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-sm text-xs font-label-sm uppercase tracking-widest text-white">{packageData.duration}</span>
             {packageData.category && (
-              <span className="px-4 py-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-sm text-xs font-label-sm uppercase tracking-widest text-white">{packageData.category}</span>
+              <span className="px-3 sm:px-4 py-1.5 sm:py-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-sm text-xs font-label-sm uppercase tracking-widest text-white">{packageData.category}</span>
             )}
           </div>
-          <h1 className="font-display-lg-mobile md:font-display-lg text-white font-semibold mb-0 tracking-tight">{packageData.name}</h1>
+          <h1 className="font-display-lg-mobile md:font-display-lg text-white font-semibold mb-0 tracking-tight text-[28px] sm:text-[40px] md:text-[56px] leading-tight">
+            {packageData.name}
+          </h1>
         </div>
       </div>
 
       {/* Content Section */}
-      <div className="relative w-full max-w-container-max mx-auto px-margin-mobile md:px-gutter py-16 md:py-20">
-        <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-start">
+      <div className="relative w-full max-w-container-max mx-auto px-margin-mobile md:px-gutter py-10 sm:py-16 md:py-20">
+        <div className="flex flex-col lg:flex-row gap-10 sm:gap-12 lg:gap-20 items-start">
         
         {/* Left Content Area */}
-        <div className="flex-1 w-full lg:w-2/3">
+        <div className="flex-1 w-full lg:w-2/3 order-2 lg:order-1">
           
           {/* Header Info */}
-          <div className="mb-12">
+          <div className="mb-8 sm:mb-12">
             {packageData.description && (
-              <p className="font-body-lg text-body-lg text-on-surface/80 max-w-3xl mb-8 leading-relaxed">
+              <p className="font-body-lg text-body-lg text-on-surface/80 max-w-3xl mb-6 sm:mb-8 leading-relaxed text-[15px] sm:text-base">
                 {packageData.description}
               </p>
             )}
           </div>
 
           {/* Tabs */}
-          <div className="border-b border-outline-variant/30 flex gap-8 mb-8 overflow-x-auto no-scrollbar">
+          <div className="border-b border-outline-variant/30 flex gap-5 sm:gap-8 mb-6 sm:mb-8 overflow-x-auto no-scrollbar scrollbar-hide">
             {['Itinerary', 'Inclusions', 'Hotels', 'Map'].map((tab) => (
               <button 
                 key={tab}
@@ -249,13 +251,13 @@ export default function PackageDetailView({ packageData }: { packageData: Packag
           </div>
 
           {/* Tab Content Areas */}
-          <div className="min-h-[400px]">
+          <div className="min-h-[280px] sm:min-h-[400px]">
             {activeTab === 'Itinerary' && (
               <div className="relative">
                 {/* Vertical Timeline Line */}
-                <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-on-surface/20 via-on-surface/40 to-on-surface/20 hidden md:block"></div>
+                <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-on-surface/20 via-on-surface/40 to-on-surface/20 hidden md:block"></div>
                 
-                <div className="flex flex-col gap-16 md:gap-20">
+                <div className="flex flex-col gap-10 sm:gap-16 md:gap-20">
                   {packageData.itinerary?.length ? (
                     packageData.itinerary.map((day, idx) => {
                       const isEven = idx % 2 === 0;
@@ -266,23 +268,22 @@ export default function PackageDetailView({ packageData }: { packageData: Packag
                           key={idx} 
                           className="relative group"
                         >
-                          {/* Timeline Node */}
-                          <div className="absolute left-6 md:left-1/2 top-8 md:top-1/2 -translate-x-1/2 md:-translate-y-1/2 z-10">
+                          {/* Timeline Node — desktop only */}
+                          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 hidden md:block">
                             <div className="relative">
                               <div className="w-12 h-12 rounded-full bg-surface border-2 border-on-surface/30 flex items-center justify-center transition-all duration-500 group-hover:border-on-surface group-hover:scale-110 group-hover:shadow-lg">
                                 <span className="font-label-sm text-xs font-bold text-on-surface">{idx + 1}</span>
                               </div>
-                              {/* Pulse effect on hover */}
                               <div className="absolute inset-0 rounded-full bg-on-surface/20 opacity-0 group-hover:opacity-100 group-hover:animate-ping"></div>
                             </div>
                           </div>
 
                           {/* Content Container */}
-                          <div className={`flex flex-col md:flex-row gap-6 md:gap-12 items-center ${!isEven ? 'md:flex-row-reverse' : ''}`}>
+                          <div className={`flex flex-col md:flex-row gap-5 sm:gap-6 md:gap-12 items-stretch md:items-center ${!isEven ? 'md:flex-row-reverse' : ''}`}>
                             {/* Image Side */}
                             {hasImage && (
                               <div className={`w-full md:w-[calc(50%-3rem)] ${isEven ? 'md:text-right' : 'md:text-left'}`}>
-                                <div className="relative aspect-[16/10] rounded-2xl overflow-hidden shadow-xl transition-all duration-700 group-hover:shadow-2xl group-hover:scale-[1.02]">
+                                <div className="relative aspect-[16/10] rounded-xl sm:rounded-2xl overflow-hidden shadow-lg sm:shadow-xl transition-all duration-700 group-hover:shadow-2xl group-hover:scale-[1.02]">
                                   <Image
                                     src={getValidImageUrl(day.image)!}
                                     alt={day.day}
@@ -290,11 +291,9 @@ export default function PackageDetailView({ packageData }: { packageData: Packag
                                     className="object-cover transition-transform duration-1000 group-hover:scale-110"
                                     sizes="(max-width: 768px) 100vw, 45vw"
                                   />
-                                  {/* Gradient overlay */}
                                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                                   
-                                  {/* Day number badge on image */}
-                                  <div className="absolute top-4 right-4 bg-surface/95 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg">
+                                  <div className="absolute top-3 right-3 sm:top-4 sm:right-4 bg-surface/95 backdrop-blur-sm px-3 sm:px-4 py-1.5 sm:py-2 rounded-full shadow-lg">
                                     <span className="font-label-sm text-xs uppercase tracking-wider text-on-surface">Day {idx + 1}</span>
                                   </div>
                                 </div>
@@ -302,23 +301,27 @@ export default function PackageDetailView({ packageData }: { packageData: Packag
                             )}
                             
                             {/* Text Side */}
-                            <div className={`w-full md:w-[calc(50%-3rem)] ${isEven ? 'md:pl-0' : 'md:pr-0'} ${!hasImage ? 'md:w-full' : ''}`}>
-                              <div className={`bg-surface-container/50 backdrop-blur-sm rounded-2xl p-8 border border-outline-variant/20 transition-all duration-500 group-hover:bg-surface-container group-hover:border-outline-variant/40 group-hover:shadow-lg ${isEven ? 'md:ml-auto' : 'md:mr-auto'}`}>
-                                <div className="flex items-start gap-4 mb-4">
+                            <div className={`w-full md:w-[calc(50%-3rem)] ${!hasImage ? 'md:w-full' : ''}`}>
+                              <div className={`bg-surface-container/50 backdrop-blur-sm rounded-xl sm:rounded-2xl p-5 sm:p-8 border border-outline-variant/20 transition-all duration-500 group-hover:bg-surface-container group-hover:border-outline-variant/40 group-hover:shadow-lg ${isEven ? 'md:ml-auto' : 'md:mr-auto'}`}>
+                                {!hasImage && (
+                                  <span className="inline-block mb-3 text-[11px] uppercase tracking-widest font-semibold text-on-surface/50 md:hidden">
+                                    Day {idx + 1}
+                                  </span>
+                                )}
+                                <div className="flex items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
                                   <div className="flex-shrink-0 w-2 h-2 rounded-full bg-on-surface/40 mt-2"></div>
-                                  <h4 className="font-headline-md text-xl md:text-2xl text-on-surface font-semibold leading-tight">
+                                  <h4 className="font-headline-md text-lg sm:text-xl md:text-2xl text-on-surface font-semibold leading-tight">
                                     {day.day}
                                   </h4>
                                 </div>
                                 
                                 {day.description && (
-                                  <p className="font-body-md text-base text-on-surface/75 leading-relaxed ml-6">
+                                  <p className="font-body-md text-[15px] sm:text-base text-on-surface/75 leading-relaxed ml-5 sm:ml-6">
                                     {day.description}
                                   </p>
                                 )}
                                 
-                                {/* Decorative element */}
-                                <div className={`mt-6 flex ${isEven ? 'justify-start' : 'md:justify-end justify-start'}`}>
+                                <div className={`mt-5 sm:mt-6 flex ${isEven ? 'justify-start' : 'md:justify-end justify-start'}`}>
                                   <div className="h-1 w-16 bg-gradient-to-r from-on-surface/20 to-transparent rounded-full"></div>
                                 </div>
                               </div>
@@ -328,7 +331,7 @@ export default function PackageDetailView({ packageData }: { packageData: Packag
                       );
                     })
                   ) : (
-                    <div className="p-12 text-center font-label-sm text-on-surface/50 italic border border-outline-variant/30 rounded-2xl bg-surface-container/30">
+                    <div className="p-8 sm:p-12 text-center font-label-sm text-on-surface/50 italic border border-outline-variant/30 rounded-2xl bg-surface-container/30">
                       Itinerary details coming soon.
                     </div>
                   )}
@@ -399,31 +402,31 @@ export default function PackageDetailView({ packageData }: { packageData: Packag
           </div>
         </div>
 
-        {/* Right Sticky Booking Sidebar */}
-        <div className="w-full lg:w-1/3 lg:sticky lg:top-32 space-y-6">
-          <div className="bg-surface-container/30 border border-outline-variant/30 rounded-xl p-8 backdrop-blur-sm shadow-sm">
-            <h3 className="font-headline-md text-2xl text-on-surface mb-6 font-semibold">Reserve Your Journey</h3>
+        {/* Right Sticky Booking Sidebar — first on mobile for quicker booking */}
+        <div className="w-full lg:w-1/3 lg:sticky lg:top-32 space-y-5 sm:space-y-6 order-1 lg:order-2">
+          <div className="bg-surface-container/30 border border-outline-variant/30 rounded-xl p-5 sm:p-8 backdrop-blur-sm shadow-sm">
+            <h3 className="font-headline-md text-xl sm:text-2xl text-on-surface mb-5 sm:mb-6 font-semibold">Reserve Your Journey</h3>
             
             {/* Premium Toggle */}
-            <div className="flex bg-surface-variant/50 rounded-lg p-1 mb-8">
+            <div className="flex bg-surface-variant/50 rounded-lg p-1 mb-6 sm:mb-8">
               <button 
                 onClick={() => setIsPremium(false)}
-                className={`flex-1 py-3 rounded-md font-label-sm text-xs uppercase tracking-widest transition-all duration-300 ${!isPremium ? 'bg-surface text-on-surface shadow-sm font-bold' : 'text-on-surface/60 hover:text-on-surface'}`}
+                className={`flex-1 py-2.5 sm:py-3 rounded-md font-label-sm text-xs uppercase tracking-widest transition-all duration-300 ${!isPremium ? 'bg-surface text-on-surface shadow-sm font-bold' : 'text-on-surface/60 hover:text-on-surface'}`}
               >
                 Standard
               </button>
               <button 
                 onClick={() => setIsPremium(true)}
-                className={`flex-1 py-3 rounded-md font-label-sm text-xs uppercase tracking-widest transition-all duration-300 ${isPremium ? 'bg-surface text-on-surface shadow-sm font-bold' : 'text-on-surface/60 hover:text-on-surface'}`}
+                className={`flex-1 py-2.5 sm:py-3 rounded-md font-label-sm text-xs uppercase tracking-widest transition-all duration-300 ${isPremium ? 'bg-surface text-on-surface shadow-sm font-bold' : 'text-on-surface/60 hover:text-on-surface'}`}
               >
                 Premium
               </button>
             </div>
 
             {/* Price Display */}
-            <div className="flex items-end gap-2 mb-8 pb-8 border-b border-outline-variant/20">
-              <span className="font-display-lg text-5xl text-on-surface font-semibold">${currentPrice.toLocaleString()}</span>
-              <span className="font-label-sm text-sm text-on-surface/60 mb-2">/ person</span>
+            <div className="flex items-end gap-2 mb-6 sm:mb-8 pb-6 sm:pb-8 border-b border-outline-variant/20">
+              <span className="font-display-lg text-4xl sm:text-5xl text-on-surface font-semibold">${currentPrice.toLocaleString()}</span>
+              <span className="font-label-sm text-sm text-on-surface/60 mb-1.5 sm:mb-2">/ person</span>
             </div>
 
             {/* Quick summary highlights */}
@@ -471,10 +474,10 @@ export default function PackageDetailView({ packageData }: { packageData: Packag
 
       {/* Booking Modal */}
       {showBookingModal && (
-        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={() => setShowBookingModal(false)}>
-          <div className="bg-background rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl" onClick={(e) => e.stopPropagation()}>
-            <div className="p-8 md:p-12">
-              <h2 className="font-headline-lg text-3xl md:text-4xl text-on-surface mb-8">Complete your booking</h2>
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center p-0 sm:p-4" onClick={() => setShowBookingModal(false)}>
+          <div className="bg-background rounded-t-2xl sm:rounded-lg max-w-2xl w-full max-h-[92vh] overflow-y-auto shadow-2xl" onClick={(e) => e.stopPropagation()}>
+            <div className="p-5 sm:p-8 md:p-12">
+              <h2 className="font-headline-lg text-2xl sm:text-3xl md:text-4xl text-on-surface mb-6 sm:mb-8">Complete your booking</h2>
 
               <form className="flex flex-col gap-6" onSubmit={handleBookingSubmit}>
                 {/* Full Name */}
@@ -606,7 +609,7 @@ export default function PackageDetailView({ packageData }: { packageData: Packag
                 )}
 
                 {/* Action Buttons */}
-                <div className="flex gap-4 mt-4">
+                <div className="flex flex-col-reverse sm:flex-row gap-3 sm:gap-4 mt-4">
                   <button
                     type="button"
                     onClick={() => setShowBookingModal(false)}
@@ -640,10 +643,10 @@ export default function PackageDetailView({ packageData }: { packageData: Packag
 
       {/* Payment Modal */}
       {showPaymentModal && clientSecret && (
-        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-background rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
-            <div className="p-8 md:p-12">
-              <h2 className="font-headline-lg text-3xl md:text-4xl text-on-surface mb-8">Payment</h2>
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center p-0 sm:p-4">
+          <div className="bg-background rounded-t-2xl sm:rounded-lg max-w-2xl w-full max-h-[92vh] overflow-y-auto shadow-2xl">
+            <div className="p-5 sm:p-8 md:p-12">
+              <h2 className="font-headline-lg text-2xl sm:text-3xl md:text-4xl text-on-surface mb-6 sm:mb-8">Payment</h2>
               <Elements stripe={stripePromise} options={{ clientSecret }}>
                 <StripePaymentForm
                   amount={totalPrice}
